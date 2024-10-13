@@ -37,4 +37,4 @@ jobs:
       run: |
         aws cloudformation deploy --template-file togethercda5.yaml \
           --stack-name luit-stack 
-          --capabilities CAPABILITY_NAMED_IAM
+          --capabilities CAPABILITY_IAM
