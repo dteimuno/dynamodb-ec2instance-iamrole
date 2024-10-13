@@ -35,6 +35,6 @@ jobs:
     - name: Deploy CloudFormation Stack
       if: github.ref == 'refs/heads/main'
       run: |
-        aws cloudformation deploy \
-          --template-file togethercda5.yaml \
+        aws cloudformation deploy --template-file togethercda5.yaml \
           --stack-name luit-stack 
+          --capabilities CAPABILITY_NAMED_IAM
