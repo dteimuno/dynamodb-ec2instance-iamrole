@@ -1,17 +1,17 @@
-# .github/workflows/deploy.yml
-name: Deploy CloudFormation Stack
+# .github/workflows/create.yml
+name: Create CloudFormation Stack
 
 # Trigger on both push to 'main' and pull request events
 on:
   push:
     branches:
-      - main  # Only deploy to AWS when changes are pushed to 'main'
+      - main  # Only create the stack when changes are pushed to 'main'
   pull_request:
     branches:
       - main  # Run on pull requests targeting 'main'
 
 jobs:
-  deploy:
+  create_stack:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,10 +31,11 @@ jobs:
       run: |
         aws cloudformation validate-template --template-body file://togethercda5.yaml
 
-    # Deploy the stack only on push to 'main'
-    - name: Deploy CloudFormation Stack
+    # Create the stack only on push to 'main'
+    - name: Create CloudFormation Stack
       if: github.ref == 'refs/heads/main'
       run: |
-        aws cloudformation deploy --template-file togethercda5.yaml \
-          --stack-name luit-stack 
+        aws cloudformation create-stack \
+          --stack-name luit-stack \  # Specify the stack name
+          --template-body file://togethercda5.yaml \  # Point to your template
           --capabilities CAPABILITY_NAMED_IAM
