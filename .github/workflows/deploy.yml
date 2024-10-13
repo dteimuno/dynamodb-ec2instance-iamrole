@@ -35,7 +35,4 @@ jobs:
     - name: Create CloudFormation Stack
       if: github.ref == 'refs/heads/main'
       run: |
-        aws cloudformation create-stack \
-          --stack-name luit-stack \  # Specify the stack name
-          --template-body file://togethercda5.yaml \  # Point to your template
-          --capabilities CAPABILITY_NAMED_IAM
+        aws cloudformation create-stack --stack-name luit-stack --template-body file://togethercda5.yaml --capabilities CAPABILITY_NAMED_IAM
