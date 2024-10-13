@@ -36,6 +36,6 @@ jobs:
       if: github.ref == 'refs/heads/main'
       run: |
         aws cloudformation create-stack \
-          --stack-name my-ci-cd-stack \  # Specify the stack name
+          --stack-name luit-stack \  # Specify the stack name
           --template-body file://togethercda5.yaml \  # Point to your template
           --capabilities CAPABILITY_NAMED_IAM
